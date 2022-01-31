@@ -4,10 +4,10 @@
 import time
 from win10toast import ToastNotifier
 from datetime import datetime
+from tkinter import *
 
 #functions
-def gatherData():
-    timeToLast = input('Enter how long you want your candy to last, 45s = 45 seconds, 20m or 20 = 20 minutes 1.5h = 1:30 minutes: ')
+def calculateTime(timeToLast):
     if('h' in timeToLast):
         timeToLast = timeToLast.replace('h', '')
         timeToLast = float(timeToLast)*60^2
@@ -16,10 +16,7 @@ def gatherData():
     else:
         timeToLast = timeToLast.replace('m', '')
         timeToLast = float(timeToLast)*60
-    # differentFlavors = input('Are you dealing with multiple or different flavors? True/False: ')
-    pieces = input('enter the amount of pieces: ')
-    print('You selected that you have '+str(pieces)+' pieces of candy and you would like to make them last '+str(float(timeToLast)/60)+' minutes.')
-    return [timeToLast, pieces]
+    return timeToLast
 
 
 def runMain(timeToLast, pieces):
@@ -48,6 +45,28 @@ def runMain(timeToLast, pieces):
             ToastNotifier().show_toast('Candy Time!', 'Enjoy the final piece of candy! There are no remaining pieces.', duration = 10)
 
 
+
 #main
-info = gatherData()
-runMain(info[0],info[1])
+master = Tk()
+master.title('Candy Counter')
+def guiGet():
+    time = e1.get()
+    pieces = e2.get()
+    master.destroy()
+    runMain(str(calculateTime(time)),str(pieces))
+def guiGetEnter(e):
+    time = e1.get()
+    pieces = e2.get()
+    master.destroy()
+    runMain(str(calculateTime(time)),str(pieces))
+Label(master, text='Time to last:\n45s = 45 seconds, 20m or 20 = 20 minutes 1.5h = 1:30 minutes:').grid(row=0)
+Label(master, text='Amount of Candy:').grid(row=1)
+e1 = Entry(master)
+e2 = Entry(master)
+b1 = Button(master, text='Enter', command = guiGet)
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+b1.grid(row=2, column=0)
+master.bind('<Return>',guiGetEnter)
+e1.focus()
+master.mainloop()
