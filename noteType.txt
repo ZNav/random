@@ -1,0 +1,6 @@
+start keybind, end keybind, delete last key bool, input timeout(s), typing sleep(ms)
+\
+\
+True
+8
+900
