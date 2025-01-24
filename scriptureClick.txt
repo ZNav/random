@@ -1,5 +1,0 @@
-scripture, run?, x, y, wait(ms)
-True
-161
-399
-1000

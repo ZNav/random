@@ -1,5 +1,0 @@
-search bar, run?, x, y, wait(ms)
-True
-631
-162
-500
