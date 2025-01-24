@@ -1,5 +1,0 @@
-jw click, run?, x, y, wait(ms)
-True
-17
-236
-500
